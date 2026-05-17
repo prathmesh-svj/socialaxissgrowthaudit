@@ -6,308 +6,144 @@
 <title>Social Axis Growth Audit</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: #0a0f1e;
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
+  min-height: 100vh; min-height: 100dvh;
+  display: flex; flex-direction: column;
   color: #f0f0f0;
 }
-
-/* TOP BAR */
 .topbar {
-  background: #0d1428;
-  padding: 14px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  background: #0d1428; padding: 14px 20px;
+  display: flex; align-items: center; justify-content: space-between;
   border-bottom: 1px solid #1e2a45;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  position: sticky; top: 0; z-index: 10;
 }
 .logo { display: flex; align-items: center; gap: 9px; }
 .logo-icon {
   width: 32px; height: 32px;
   background: linear-gradient(135deg, #c9a84c, #f0d080);
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px;
+  border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 16px;
 }
 .logo-text {
   font-size: 16px; font-weight: 700;
   background: linear-gradient(135deg, #c9a84c, #f0d080);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  letter-spacing: 0.02em;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .step-count {
   font-size: 12px; color: #4a5878; font-weight: 500;
-  background: #131b30; padding: 5px 12px;
-  border-radius: 20px; border: 1px solid #1e2a45;
+  background: #131b30; padding: 5px 12px; border-radius: 20px; border: 1px solid #1e2a45;
 }
-
-/* PROGRESS */
 .prog-wrap { height: 4px; background: #1e2a45; }
-.prog-fill {
-  height: 100%;
-  background: linear-gradient(90deg, #c9a84c, #f0d080);
-  transition: width 0.4s ease;
-}
-
-/* MAIN */
-.main {
-  flex: 1;
-  padding: 1.5rem 1.1rem 2.5rem;
-  max-width: 540px;
-  width: 100%;
-  margin: 0 auto;
-}
-
-.step { display: none; }
-.step.on { display: block; }
-
-.gold-line {
-  width: 32px; height: 3px;
-  background: linear-gradient(90deg, #c9a84c, #f0d080);
-  border-radius: 2px; margin-bottom: 10px;
-}
+.prog-fill { height: 100%; background: linear-gradient(90deg, #c9a84c, #f0d080); transition: width 0.4s ease; }
+.main { flex: 1; padding: 1.5rem 1.1rem 2.5rem; max-width: 540px; width: 100%; margin: 0 auto; }
+.step { display: none; } .step.on { display: block; }
+.gold-line { width: 32px; height: 3px; background: linear-gradient(90deg, #c9a84c, #f0d080); border-radius: 2px; margin-bottom: 10px; }
 .free-badge {
   display: inline-flex; align-items: center; gap: 6px;
-  background: rgba(201,168,76,0.1);
-  border: 1px solid rgba(201,168,76,0.3);
+  background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.3);
   border-radius: 20px; padding: 5px 14px;
-  font-size: 12px; font-weight: 600; color: #c9a84c;
-  margin-bottom: 12px; letter-spacing: 0.05em;
+  font-size: 12px; font-weight: 600; color: #c9a84c; margin-bottom: 12px; letter-spacing: 0.05em;
 }
-.stitle {
-  font-size: 22px; font-weight: 700; color: #fff;
-  margin-bottom: 8px; line-height: 1.3;
-}
-.ssub {
-  font-size: 14px; color: #6b7a99;
-  margin-bottom: 1.5rem; line-height: 1.6;
-}
-
-/* OPTION CARDS */
-.og {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-bottom: 1.5rem;
-}
+.stitle { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 8px; line-height: 1.3; }
+.ssub { font-size: 14px; color: #6b7a99; margin-bottom: 1.5rem; line-height: 1.6; }
+.og { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
 .oc {
-  background: #0d1428;
-  border: 1.5px solid #1e2a45;
-  border-radius: 16px;
-  padding: 16px 12px;
-  cursor: pointer;
-  transition: all 0.2s;
-  -webkit-tap-highlight-color: transparent;
+  background: #0d1428; border: 1.5px solid #1e2a45;
+  border-radius: 16px; padding: 16px 12px;
+  cursor: pointer; transition: all 0.2s; -webkit-tap-highlight-color: transparent;
 }
 .oc:active { transform: scale(0.97); }
-.oc.sel {
-  border-color: #c9a84c;
-  background: #111827;
-  box-shadow: 0 0 0 1px #c9a84c, 0 4px 20px rgba(201,168,76,0.15);
-}
+.oc.sel { border-color: #c9a84c; background: #111827; box-shadow: 0 0 0 1px #c9a84c, 0 4px 20px rgba(201,168,76,0.15); }
 .oi { font-size: 26px; margin-bottom: 7px; }
 .ot { font-size: 13px; font-weight: 600; color: #e8e8f0; }
 .od { font-size: 11px; color: #4a5878; margin-top: 3px; line-height: 1.4; }
-
-/* SLIDER CARDS — FIXED FOR MOBILE */
-.slider-block {
-  background: #0d1428;
-  border: 1px solid #1e2a45;
-  border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 12px;
-}
-.slider-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 14px;
-  gap: 8px;
-}
-.slider-label {
-  font-size: 14px; color: #8899bb;
-  font-weight: 500; flex: 1;
-}
+.slider-block { background: #0d1428; border: 1px solid #1e2a45; border-radius: 16px; padding: 16px; margin-bottom: 12px; }
+.slider-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 8px; }
+.slider-label { font-size: 14px; color: #8899bb; font-weight: 500; flex: 1; }
 .slider-val {
   font-size: 18px; font-weight: 700;
   background: linear-gradient(135deg, #c9a84c, #f0d080);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
   white-space: nowrap;
-  min-width: fit-content;
 }
 input[type=range] {
-  width: 100%;
-  height: 6px;
-  cursor: pointer;
-  accent-color: #c9a84c;
-  -webkit-appearance: none;
-  appearance: none;
-  background: #1e2a45;
-  border-radius: 3px;
-  outline: none;
+  width: 100%; height: 6px; cursor: pointer;
+  -webkit-appearance: none; appearance: none;
+  background: #1e2a45; border-radius: 3px; outline: none;
 }
 input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #c9a84c, #f0d080);
-  cursor: pointer;
+  -webkit-appearance: none; width: 22px; height: 22px; border-radius: 50%;
+  background: linear-gradient(135deg, #c9a84c, #f0d080); cursor: pointer;
   box-shadow: 0 2px 8px rgba(201,168,76,0.4);
 }
 input[type=range]::-moz-range-thumb {
-  width: 22px; height: 22px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #c9a84c, #f0d080);
-  cursor: pointer;
-  border: none;
+  width: 22px; height: 22px; border-radius: 50%;
+  background: linear-gradient(135deg, #c9a84c, #f0d080); cursor: pointer; border: none;
 }
-
-/* FORM */
 .ig { margin-bottom: 14px; }
-.ig label {
-  display: block; font-size: 12px; color: #6b7a99;
-  font-weight: 600; letter-spacing: 0.05em;
-  text-transform: uppercase; margin-bottom: 8px;
-}
+.ig label { display: block; font-size: 12px; color: #6b7a99; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 8px; }
 .ig input {
-  width: 100%; padding: 15px;
-  background: #0d1428;
-  border: 1.5px solid #1e2a45;
-  border-radius: 12px;
-  font-size: 15px; color: #f0f0f0;
-  outline: none;
-  transition: border-color .2s, box-shadow .2s;
-  -webkit-appearance: none;
+  width: 100%; padding: 15px; background: #0d1428;
+  border: 1.5px solid #1e2a45; border-radius: 12px;
+  font-size: 15px; color: #f0f0f0; outline: none;
+  transition: border-color .2s, box-shadow .2s; -webkit-appearance: none;
 }
 .ig input::placeholder { color: #2e3d5c; }
-.ig input:focus {
-  border-color: #c9a84c;
-  box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
-}
-
-/* BUTTONS */
+.ig input:focus { border-color: #c9a84c; box-shadow: 0 0 0 3px rgba(201,168,76,0.12); }
 .btn-p {
   background: linear-gradient(135deg, #c9a84c, #f0d080);
-  color: #0a0f1e; border: none;
-  border-radius: 14px; padding: 17px;
-  font-size: 16px; font-weight: 700;
-  cursor: pointer; width: 100%; margin-top: 8px;
-  transition: opacity .15s, transform .1s;
-  -webkit-tap-highlight-color: transparent;
-  letter-spacing: 0.02em;
+  color: #0a0f1e; border: none; border-radius: 14px; padding: 17px;
+  font-size: 16px; font-weight: 700; cursor: pointer; width: 100%; margin-top: 8px;
+  transition: opacity .15s, transform .1s; -webkit-tap-highlight-color: transparent;
 }
 .btn-p:active { transform: scale(0.98); opacity: 0.9; }
-.btn-p:disabled {
-  background: #1e2a45; color: #3a4a65;
-  cursor: not-allowed; transform: none;
-}
+.btn-p:disabled { background: #1e2a45; color: #3a4a65; cursor: not-allowed; transform: none; }
 .btn-b {
-  background: none; border: none;
-  color: #4a5878; font-size: 14px;
-  cursor: pointer; margin-top: 16px;
-  display: flex; align-items: center; gap: 6px;
-  -webkit-tap-highlight-color: transparent;
+  background: none; border: none; color: #4a5878; font-size: 14px;
+  cursor: pointer; margin-top: 16px; display: flex; align-items: center; gap: 6px;
 }
-
-/* LOADER */
+.currency-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #131b30; border: 1px solid #1e2a45;
+  border-radius: 20px; padding: 5px 12px;
+  font-size: 12px; color: #c9a84c; margin-bottom: 1rem;
+}
 .loader {
-  width: 48px; height: 48px;
-  border: 3px solid #1e2a45;
-  border-top-color: #c9a84c;
-  border-radius: 50%;
-  animation: spin .8s linear infinite;
-  margin: 0 auto 1.25rem;
+  width: 48px; height: 48px; border: 3px solid #1e2a45;
+  border-top-color: #c9a84c; border-radius: 50%;
+  animation: spin .8s linear infinite; margin: 0 auto 1.25rem;
 }
 @keyframes spin { to { transform: rotate(360deg); } }
-
-/* RESULTS */
-.score-wrap { text-align: center; margin: 0.5rem 0 1.5rem; }
-.res-name {
-  font-size: 12px; color: #c9a84c;
-  font-weight: 600; letter-spacing: 0.08em;
-  text-transform: uppercase; margin-bottom: 8px;
-}
-.res-biz {
-  font-size: 15px; color: #6b7a99;
-  margin-top: 6px;
-}
-
-.mg {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 10px; margin-bottom: 1.5rem;
-}
-.mc {
-  background: #0d1428;
-  border: 1px solid #1e2a45;
-  border-radius: 14px;
-  padding: 14px 8px; text-align: center;
-}
-.mv {
-  font-size: 16px; font-weight: 700;
-  background: linear-gradient(135deg, #c9a84c, #f0d080);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+.mg { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1.5rem; }
+.mc { background: #0d1428; border: 1px solid #1e2a45; border-radius: 14px; padding: 14px 8px; text-align: center; }
+.mv { font-size: 16px; font-weight: 700; background: linear-gradient(135deg, #c9a84c, #f0d080); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
 .ml { font-size: 10px; color: #4a5878; margin-top: 4px; }
-
-.ins-title {
-  font-size: 15px; font-weight: 700;
-  color: #fff; margin-bottom: 12px;
-}
+.ins-title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 12px; }
 .ib {
-  border-left: 3px solid #c9a84c;
-  padding: 14px 14px;
-  background: #0d1428;
-  border-radius: 0 14px 14px 0;
-  margin-bottom: 10px;
-  font-size: 14px; color: #c8d0e0;
-  line-height: 1.6;
-  border-top: 1px solid #1e2a45;
-  border-right: 1px solid #1e2a45;
-  border-bottom: 1px solid #1e2a45;
+  border-left: 3px solid #c9a84c; padding: 14px;
+  background: #0d1428; border-radius: 0 14px 14px 0; margin-bottom: 10px;
+  font-size: 14px; color: #c8d0e0; line-height: 1.6;
+  border-top: 1px solid #1e2a45; border-right: 1px solid #1e2a45; border-bottom: 1px solid #1e2a45;
 }
 .ib strong { color: #f0d080; font-weight: 600; }
-
 .cta-box {
   background: linear-gradient(135deg, #111827, #0d1428);
-  border: 1px solid #c9a84c;
-  border-radius: 18px;
-  padding: 1.5rem;
-  margin-top: 1.5rem;
-  text-align: center;
-  box-shadow: 0 0 30px rgba(201,168,76,0.08);
+  border: 1px solid #c9a84c; border-radius: 18px; padding: 1.5rem;
+  margin-top: 1.5rem; text-align: center; box-shadow: 0 0 30px rgba(201,168,76,0.08);
 }
-.cta-box p {
-  font-size: 14px; color: #8899bb;
-  margin-bottom: 1.25rem; line-height: 1.6;
-}
+.cta-box p { font-size: 14px; color: #8899bb; margin-bottom: 1.25rem; line-height: 1.6; }
 .btn-gold {
   background: linear-gradient(135deg, #c9a84c, #f0d080);
-  color: #0a0f1e; border: none;
-  border-radius: 12px; padding: 16px;
-  font-size: 15px; font-weight: 700;
-  cursor: pointer; width: 100%;
+  color: #0a0f1e; border: none; border-radius: 12px; padding: 16px;
+  font-size: 15px; font-weight: 700; cursor: pointer; width: 100%;
   transition: opacity .15s, transform .1s;
-  letter-spacing: 0.02em;
 }
 .btn-gold:active { opacity: 0.88; transform: scale(0.98); }
-
 .privacy { font-size: 11px; color: #2e3d5c; text-align: center; margin-top: 12px; }
-
+.score-wrap { text-align: center; margin: 0.5rem 0 1.5rem; }
+.res-name { font-size: 12px; color: #c9a84c; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.res-biz { font-size: 15px; color: #6b7a99; margin-top: 6px; }
 @media (max-width: 380px) {
   .og { grid-template-columns: 1fr; }
   .mg { grid-template-columns: 1fr; }
@@ -349,43 +185,24 @@ input[type=range]::-moz-range-thumb {
     <div class="gold-line"></div>
     <p class="stitle">Tell us about your numbers</p>
     <p class="ssub">Rough estimates are fine — this stays completely private.</p>
+    <div class="currency-pill" id="curr-pill">🌍 Detecting your currency...</div>
 
     <div class="slider-block">
-      <div class="slider-top">
-        <span class="slider-label">Monthly clients</span>
-        <span class="slider-val" id="vc">50</span>
-      </div>
-      <input type="range" min="5" max="500" step="5" value="50" id="sl1"
-        oninput="document.getElementById('vc').textContent=this.value">
+      <div class="slider-top"><span class="slider-label">Monthly clients</span><span class="slider-val" id="vc">50</span></div>
+      <input type="range" min="1" max="500" step="1" value="50" id="sl1" oninput="updateSlider()">
     </div>
-
     <div class="slider-block">
-      <div class="slider-top">
-        <span class="slider-label">Avg revenue / client</span>
-        <span class="slider-val" id="vr">₹1,500</span>
-      </div>
-      <input type="range" min="200" max="10000" step="100" value="1500" id="sl2"
-        oninput="document.getElementById('vr').textContent='₹'+parseInt(this.value).toLocaleString('en-IN')">
+      <div class="slider-top"><span class="slider-label">Avg revenue / client</span><span class="slider-val" id="vr">₹1,500</span></div>
+      <input type="range" min="200" max="10000" step="100" value="1500" id="sl2" oninput="updateSlider()">
     </div>
-
     <div class="slider-block">
-      <div class="slider-top">
-        <span class="slider-label">% clients from referrals</span>
-        <span class="slider-val" id="vf">20%</span>
-      </div>
-      <input type="range" min="0" max="100" step="5" value="20" id="sl3"
-        oninput="document.getElementById('vf').textContent=this.value+'%'">
+      <div class="slider-top"><span class="slider-label">% clients from referrals</span><span class="slider-val" id="vf">20%</span></div>
+      <input type="range" min="0" max="100" step="5" value="20" id="sl3" oninput="document.getElementById('vf').textContent=this.value+'%'">
     </div>
-
     <div class="slider-block">
-      <div class="slider-top">
-        <span class="slider-label">Google rating</span>
-        <span class="slider-val" id="vg">4.0 ⭐</span>
-      </div>
-      <input type="range" min="1" max="5" step="0.5" value="4" id="sl4"
-        oninput="document.getElementById('vg').textContent=parseFloat(this.value).toFixed(1)+' ⭐'">
+      <div class="slider-top"><span class="slider-label">Google rating</span><span class="slider-val" id="vg">4.0 ⭐</span></div>
+      <input type="range" min="10" max="50" step="5" value="40" id="sl4" oninput="document.getElementById('vg').textContent=(this.value/10).toFixed(1)+' ⭐'">
     </div>
-
     <button class="btn-p" onclick="go(3)">Continue →</button>
     <button class="btn-b" onclick="go(1)">← Back</button>
   </div>
@@ -414,7 +231,7 @@ input[type=range]::-moz-range-thumb {
     <p class="ssub">Where should we send your personalised growth report?</p>
     <div class="ig"><label>Your name</label><input type="text" id="f1" placeholder="e.g. Priya Sharma" oninput="chk()"></div>
     <div class="ig"><label>Business name</label><input type="text" id="f2" placeholder="e.g. Glow Studio" oninput="chk()"></div>
-    <div class="ig"><label>WhatsApp number</label><input type="tel" id="f3" placeholder="+91 98765 43210" oninput="chk()"></div>
+    <div class="ig"><label>WhatsApp number</label><input type="tel" id="f3" placeholder="+1 234 567 8900" oninput="chk()"></div>
     <div class="ig"><label>Email address</label><input type="email" id="f4" placeholder="you@example.com" oninput="chk()"></div>
     <button class="btn-p" id="b4" disabled onclick="gen()">✦ Generate My Free Audit</button>
     <button class="btn-b" onclick="go(3)">← Back</button>
@@ -450,16 +267,13 @@ input[type=range]::-moz-range-thumb {
       </svg>
       <p class="res-biz" id="rbiz"></p>
     </div>
-
     <div class="mg">
-      <div class="mc"><div class="mv" id="m1">₹0</div><div class="ml">Monthly revenue</div></div>
-      <div class="mc"><div class="mv" id="m2">₹0</div><div class="ml">Potential uplift</div></div>
+      <div class="mc"><div class="mv" id="m1">0</div><div class="ml">Monthly revenue</div></div>
+      <div class="mc"><div class="mv" id="m2">0</div><div class="ml">Potential uplift</div></div>
       <div class="mc"><div class="mv" id="m3">0</div><div class="ml">Clients / mo</div></div>
     </div>
-
     <p class="ins-title">✦ Your top growth opportunities</p>
     <div id="ins"></div>
-
     <div class="cta-box">
       <p id="ctap">Ready to turn these insights into real results? Book a free 20-minute strategy call with Social Axis and get your personalised 30-day growth plan.</p>
       <button class="btn-gold" onclick="window.open('https://wa.me/8857984730?text=Hi, I just completed the Social Axis growth audit and would love to discuss my results!','_blank')">📞 Book My Free Strategy Call</button>
@@ -471,6 +285,54 @@ input[type=range]::-moz-range-thumb {
 <script>
 var biz=null, challenges=[];
 var stepLabels=['Step 1 of 4','Step 2 of 4','Step 3 of 4','Step 4 of 4','Analysing...','Your Results'];
+
+// Currency config by country code
+var currencyMap = {
+  IN:  { symbol:'₹',  name:'INR', min:200,   max:10000, step:100,  default:1500,  mult:1     },
+  US:  { symbol:'$',  name:'USD', min:5,     max:500,   step:5,    default:50,    mult:0.012 },
+  GB:  { symbol:'£',  name:'GBP', min:5,     max:400,   step:5,    default:40,    mult:0.0097},
+  AE:  { symbol:'AED',name:'AED', min:20,    max:2000,  step:20,   default:200,   mult:0.044 },
+  SG:  { symbol:'S$', name:'SGD', min:10,    max:700,   step:10,   default:70,    mult:0.016 },
+  AU:  { symbol:'A$', name:'AUD', min:10,    max:700,   step:10,   default:70,    mult:0.018 },
+  CA:  { symbol:'C$', name:'CAD', min:10,    max:700,   step:10,   default:70,    mult:0.016 },
+  DEFAULT: { symbol:'$', name:'USD', min:5,  max:500,   step:5,    default:50,    mult:0.012 }
+};
+
+var userCurrency = currencyMap.DEFAULT;
+var userCountry = '';
+
+// Detect currency via free IP API
+fetch('https://ipapi.co/json/')
+  .then(function(r){ return r.json(); })
+  .then(function(d){
+    userCountry = d.country_code || '';
+    userCurrency = currencyMap[userCountry] || currencyMap.DEFAULT;
+    var pill = document.getElementById('curr-pill');
+    pill.textContent = '🌍 ' + d.country_name + ' — ' + userCurrency.name;
+    // Update slider 2 range for local currency
+    var sl2 = document.getElementById('sl2');
+    sl2.min = userCurrency.min;
+    sl2.max = userCurrency.max;
+    sl2.step = userCurrency.step;
+    sl2.value = userCurrency.default;
+    updateSlider();
+  })
+  .catch(function(){
+    document.getElementById('curr-pill').textContent = '🌍 Currency: USD';
+    var sl2 = document.getElementById('sl2');
+    sl2.min=5; sl2.max=500; sl2.step=5; sl2.value=50;
+    updateSlider();
+  });
+
+function updateSlider(){
+  document.getElementById('vc').textContent = document.getElementById('sl1').value;
+  var rev = parseInt(document.getElementById('sl2').value);
+  document.getElementById('vr').textContent = userCurrency.symbol + rev.toLocaleString();
+}
+
+function formatMoney(amount){
+  return userCurrency.symbol + Math.round(amount).toLocaleString();
+}
 
 function pick(val,el){
   document.querySelectorAll('#s1 .oc').forEach(function(c){c.classList.remove('sel');});
@@ -484,8 +346,7 @@ function mpick(val,el){
     challenges=challenges.filter(function(c){return c!==val;});
   } else {
     if(challenges.length>=2) return;
-    el.classList.add('sel');
-    challenges.push(val);
+    el.classList.add('sel'); challenges.push(val);
   }
   document.getElementById('b3').disabled=challenges.length===0;
 }
@@ -531,8 +392,8 @@ function showFallback(name,bizName,clients,rev,refPct,rating){
   var score=Math.round(35+(rating/5)*25+(refPct/100)*20);
   document.getElementById('rname').textContent=name.toUpperCase()+"'S GROWTH SCORE";
   document.getElementById('rbiz').textContent=bizName;
-  document.getElementById('m1').textContent='₹'+monthly.toLocaleString('en-IN');
-  document.getElementById('m2').textContent='+₹'+Math.round(monthly*0.28).toLocaleString('en-IN');
+  document.getElementById('m1').textContent=formatMoney(monthly);
+  document.getElementById('m2').textContent='+'+formatMoney(monthly*0.28);
   document.getElementById('m3').textContent=clients;
   animScore(score);
   renderInsights([
@@ -550,14 +411,13 @@ async function gen(){
   var clients=parseInt(document.getElementById('sl1').value);
   var rev=parseInt(document.getElementById('sl2').value);
   var refPct=parseInt(document.getElementById('sl3').value);
-  var rating=parseFloat(document.getElementById('sl4').value);
+  var rating=parseInt(document.getElementById('sl4').value)/10;
   var monthly=clients*rev;
   go(5);
   var msgs=['Analysing your business data...','Benchmarking against top performers...','Identifying your growth gaps...','Building your personalised report...'];
-  var mi=0;
-  var lmsg=document.getElementById('lmsg');
+  var mi=0; var lmsg=document.getElementById('lmsg');
   var ticker=setInterval(function(){mi=(mi+1)%msgs.length;lmsg.textContent=msgs[mi];},1800);
-  var prompt='You are a local business growth consultant at Social Axis. Return ONLY valid JSON, no markdown, no backticks.\n\nBusiness: '+bizName+', type: '+biz+', monthly clients: '+clients+', avg revenue: ₹'+rev+', referral rate: '+refPct+'%, Google rating: '+rating+'/5, challenges: '+challenges.join(' and ')+'.\n\nReturn exactly: {"score":number,"upliftPct":number,"insights":[{"title":"short title","text":"2 sentence actionable insight"},{"title":"...","text":"..."},{"title":"...","text":"..."}],"ctaText":"1 sentence personalised CTA for '+name+' at '+bizName+'"}';
+  var prompt='You are a local business growth consultant at Social Axis. Return ONLY valid JSON, no markdown, no backticks.\n\nBusiness: '+bizName+', country: '+userCountry+', currency: '+userCurrency.name+', type: '+biz+', monthly clients: '+clients+', avg revenue per client: '+userCurrency.symbol+rev+', referral rate: '+refPct+'%, Google rating: '+rating+'/5, challenges: '+challenges.join(' and ')+'.\n\nReturn exactly: {"score":number,"upliftPct":number,"insights":[{"title":"short title","text":"2 sentence actionable insight tailored to this country and business"},{"title":"...","text":"..."},{"title":"...","text":"..."}],"ctaText":"1 sentence personalised CTA for '+name+' at '+bizName+'"}';
   try{
     var res=await fetch('https://api.anthropic.com/v1/messages',{
       method:'POST',
@@ -572,8 +432,8 @@ async function gen(){
     var uplift=Math.round(monthly*(p.upliftPct||25)/100);
     document.getElementById('rname').textContent=name.toUpperCase()+"'S GROWTH SCORE";
     document.getElementById('rbiz').textContent=bizName;
-    document.getElementById('m1').textContent='₹'+monthly.toLocaleString('en-IN');
-    document.getElementById('m2').textContent='+₹'+uplift.toLocaleString('en-IN');
+    document.getElementById('m1').textContent=formatMoney(monthly);
+    document.getElementById('m2').textContent='+'+formatMoney(uplift);
     document.getElementById('m3').textContent=clients;
     animScore(score);
     renderInsights(p.insights||[]);
